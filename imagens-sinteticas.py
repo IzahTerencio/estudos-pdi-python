@@ -40,7 +40,23 @@ def bandeira_franca(altura):
             image.putpixel((x+2*intervalo,y),vermelho)
     return image
 
+#função que sintetiza a bandeira do Japão
+def bandeira_japao(altura):
+    largura  = 3*altura//2
+    branco   = (255,255,255)
+    vermelho = (173,35,51)
+
+    image = Image.new("RGB",(largura,altura),branco)
+    raio = 3*altura//10
+    centro = (largura//2,altura//2)
+
+    for x in range(centro[0]-raio, centro[0]+raio): #pega o quadrado que passa circunscrevendo o círculo
+        for y in range(centro[1]-raio,centro[1]+raio):
+            if ((x-centro[0])**2 + (y-centro[1])**2 <= raio**2):
+                image.putpixel((x,y), vermelho)
+    return image
+
 #para ser executado como main
 if __name__ == "__main__":
-    t = bandeira_franca(700)
+    t = bandeira_japao(700)
     t.show()
